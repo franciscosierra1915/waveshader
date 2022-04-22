@@ -3,7 +3,7 @@ import React, { useRef, Suspense, useState } from "react";
 import { Canvas, extend, useFrame, useLoader } from "@react-three/fiber";
 import { shaderMaterial } from "@react-three/drei";
 import glsl from "babel-plugin-glsl/macro";
-import pic from './profile-pic.jpg';
+import pic from './profile-pic.JPEG';
 import "./App.css";
 
 const WaveShaderMaterial = shaderMaterial(

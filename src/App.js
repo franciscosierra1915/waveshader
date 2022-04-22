@@ -3,7 +3,7 @@ import React, { useRef, Suspense, useState } from "react";
 import { Canvas, extend, useFrame, useLoader } from "@react-three/fiber";
 import { shaderMaterial } from "@react-three/drei";
 import glsl from "babel-plugin-glsl/macro";
-import pic from './profile-pic.JPEG';
+import pic from "./profile-pic.jpg";
 import "./App.css";
 
 const WaveShaderMaterial = shaderMaterial(
@@ -12,7 +12,7 @@ const WaveShaderMaterial = shaderMaterial(
     uTime: 0,
     uColor: new THREE.Color(0.0, 0.0, 0.0),
     uTexture: new THREE.Texture(),
-    uTest: 0
+    uTest: 0,
   },
   // Vertex Shader
   glsl`
@@ -65,7 +65,7 @@ const Wave = () => {
   const ref = useRef();
 
   useFrame(({ clock }) => {
-    if(hovered){
+    if (hovered) {
       ref.current.uTime = clock.getElapsedTime();
     } else {
       ref.current.uTime = 0;
@@ -75,7 +75,10 @@ const Wave = () => {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <mesh onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
+    <mesh
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+    >
       <planeBufferGeometry args={[1.3, 0.7, 16, 16]} />
       <waveShaderMaterial ref={ref} uTexture={image} />
     </mesh>
@@ -83,10 +86,8 @@ const Wave = () => {
 };
 
 const Scene = () => {
-
-
   return (
-    <Canvas camera={{ fov: 7, position: [0, 0, 5] }} >
+    <Canvas camera={{ fov: 7, position: [0, 0, 5] }}>
       <Suspense fallback={null}>
         <Wave />
       </Suspense>
@@ -95,9 +96,7 @@ const Scene = () => {
 };
 
 const App = () => {
-  return (
-    <Scene />
-  );
+  return <Scene />;
 };
 
 export default App;
